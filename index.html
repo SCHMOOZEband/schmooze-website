@@ -6,102 +6,77 @@
 
 <title>SCHMOOZE</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
+/* BASE */
 body {
     margin: 0;
-    background: #0d0d0d;
-    color: #fefefd;
+    background: #0b0b0b;
+    color: #fff;
     font-family: 'Barlow', sans-serif;
+    font-size: 20px; /* BIGGER BODY TEXT */
 }
 
-/* TEXTURE + GRAIN */
+/* HALFTONE BACKGROUND */
 body::before {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
     background: url("https://www.transparenttextures.com/patterns/dots.png");
-    opacity: 0.2;
-    pointer-events: none;
-    z-index: 2;
+    opacity: 0.25;
+    z-index: 0;
 }
 
+/* FILM GRAIN */
 body::after {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
     background: url("https://www.transparenttextures.com/patterns/noise.png");
-    opacity: 0.12;
-    pointer-events: none;
-    z-index: 3;
-    animation: flicker 0.3s infinite;
+    opacity: 0.1;
+    animation: flicker 0.4s infinite;
+    z-index: 1;
 }
 
 @keyframes flicker {
-    0% { opacity: 0.1; }
-    50% { opacity: 0.18; }
-    100% { opacity: 0.1; }
+    0% { opacity: 0.08; }
+    50% { opacity: 0.15; }
+    100% { opacity: 0.08; }
 }
 
-/* GLITCH EFFECT */
-.glitch {
+/* KEEP CONTENT ABOVE TEXTURE */
+* {
     position: relative;
-    display: inline-block;
-}
-
-.glitch:hover::before,
-.glitch:hover::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-}
-
-.glitch:hover::before {
-    color: #ff2e2e;
-    transform: translate(2px, -2px);
-    opacity: 0.7;
-}
-
-.glitch:hover::after {
-    color: #ff7a00;
-    transform: translate(-2px, 2px);
-    opacity: 0.7;
+    z-index: 2;
 }
 
 /* NAV */
 nav {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
-    z-index: 10;
-    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    background: rgba(0,0,0,0.7);
 }
 
-nav h1 {
-    font-family: 'Bebas Neue';
-    color: #ff2e2e;
-    letter-spacing: 2px;
+nav img {
+    height: 50px;
 }
 
 nav a {
     margin-left: 20px;
-    text-decoration: none;
     color: white;
-    font-size: 14px;
+    text-decoration: none;
 }
 
 nav a:hover {
-    color: #ff7a00;
+    color: #ff2e7a;
 }
 
-/* HERO FULL SCREEN */
+/* HERO */
 .hero {
     height: 100vh;
     background: url("https://pasteboard.co/TjOPaSKcWwgf.jpg") center/cover no-repeat;
@@ -109,63 +84,92 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 5;
-}
-
-.hero h2 {
+.hero h1 {
     font-family: 'Bebas Neue';
-    font-size: 110px;
-    margin: 0;
+    font-size: 100px;
     color: #ff2e2e;
 }
 
-.hero p {
-    color: #ddd;
-    letter-spacing: 2px;
-}
-
-/* SECTIONS */
+/* SECTION */
 .section {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 80px auto;
     padding: 0 20px;
-    position: relative;
-    z-index: 5;
 }
 
-.section h3 {
+.section h2 {
     font-family: 'Bebas Neue';
-    font-size: 45px;
+    font-size: 50px;
     color: #ff2e2e;
-    border-bottom: 2px solid #ff7a00;
-    display: inline-block;
+    border-bottom: 3px solid #ff7a00;
+    margin-bottom: 30px;
 }
 
 /* SHOWS */
 .show {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dashed #444;
-    padding: 12px 0;
+    padding: 15px 0;
+    border-bottom: 1px dashed #555;
+    font-size: 22px;
+}
+
+.ticket-btn {
+    border: 2px solid #ff2e7a;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: white;
+}
+
+.ticket-btn:hover {
+    background: #ff2e7a;
+}
+
+/* ICON LINKS */
+.icons {
+    display: flex;
+    gap: 20px;
+    font-size: 30px;
+}
+
+.icons a {
+    color: white;
+}
+
+.icons a:hover {
+    color: #ff7a00;
+}
+
+/* RELEASES */
+.release {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.release img {
+    width: 120px;
+}
+
+/* MERCH GRID */
+.merch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.merch-grid img {
+    width: 100%;
 }
 
 /* BUTTON */
 .button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 20px;
     border: 2px solid #ff2e2e;
-    padding: 8px 14px;
     text-decoration: none;
     color: white;
 }
@@ -174,48 +178,24 @@ nav a:hover {
     background: #ff2e2e;
 }
 
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-/* MEMBERS */
-.member {
-    border-left: 3px solid #ff7a00;
-    padding-left: 10px;
-}
-
-/* IMAGES */
-.gallery img {
+/* EMAIL */
+input {
     width: 100%;
-    filter: contrast(160%) grayscale(50%) brightness(0.85);
+    padding: 15px;
+    font-size: 18px;
 }
 
-/* LINKS */
-a {
-    color: #ff7a00;
-}
-
-/* FORM */
-input, button {
-    padding: 8px;
+button {
+    padding: 15px 25px;
+    font-size: 18px;
     margin-top: 10px;
+    border: 2px solid #ff2e2e;
     background: black;
-    border: 1px solid #ff2e2e;
     color: white;
 }
 
 button:hover {
     background: #ff2e2e;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 40px;
-    border-top: 1px solid #333;
 }
 
 </style>
@@ -224,100 +204,86 @@ footer {
 <body>
 
 <nav>
-    <h1 class="glitch" data-text="SCHMOOZE">SCHMOOZE</h1>
+    <img src="logo.png">
     <div>
-        <a href="#about" class="glitch" data-text="About">About</a>
-        <a href="#shows" class="glitch" data-text="Shows">Shows</a>
-        <a href="#music" class="glitch" data-text="Music">Music</a>
-        <a href="#contact" class="glitch" data-text="Contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#shows">Shows</a>
+        <a href="#music">Music</a>
     </div>
 </nav>
 
 <div class="hero">
-    <div class="hero-content">
-        <h2 class="glitch" data-text="SCHMOOZE">SCHMOOZE</h2>
-        <p>Alternative Rock • Athens, GA</p>
-    </div>
+    <h1>Alternative Rock • Athens, GA</h1>
 </div>
 
-<div class="section" id="about">
-    <h3 class="glitch" data-text="ABOUT">ABOUT</h3>
-    <p>WRITE YOUR BIO HERE.</p>
+<div class="section">
+<h2>NEWEST RELEASES</h2>
+
+<div class="release">
+<img src="https://i.scdn.co/image/ab67616d0000b2738eb0e866594d03223e91c092">
+<div>
+<strong>Too Late to Plead Insanity</strong>
+</div>
+</div>
+
+<div class="release">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EDu4IUp8yJRi568H97aBDMr8iWuvc-V3PQ&s">
+<div>
+<strong>If You Say So (EP)</strong>
+</div>
+</div>
+
 </div>
 
 <div class="section" id="shows">
-    <h3 class="glitch" data-text="SHOWS">SHOWS</h3>
+<h2>SHOWS</h2>
 
-    <div class="show"><span>4/3 — Ciné (Athens)</span></div>
-    <div class="show"><span>4/4 — Smith’s Olde Bar (Atlanta)</span></div>
-    <div class="show"><span>4/11 — Athentic Brewing</span></div>
-    <div class="show"><span>5/8 — Ciné</span></div>
-    <div class="show"><span>6/25 — Flicker</span></div>
+<div class="show">4/3 Ciné <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/4 Smith’s Olde Bar <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/11 Athentic Brewing <a class="ticket-btn" href="#">Tickets</a></div>
 
-</div>
-
-<div class="section" id="music">
-    <h3 class="glitch" data-text="MUSIC">MUSIC</h3>
-
-    <p>
-        <a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX">Spotify</a><br>
-        <a href="https://music.apple.com/us/artist/schmooze/1741641206">Apple Music</a><br>
-        <a href="https://www.youtube.com/@SCHMOOZEBAND">YouTube</a>
-    </p>
-
-    <iframe width="100%" height="300" src="https://www.youtube.com/embed/VIDEOID" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<div class="section gallery">
-    <h3 class="glitch" data-text="GALLERY">GALLERY</h3>
-    <img src="https://pasteboard.co/TjOPaSKcWwgf.jpg">
 </div>
 
 <div class="section">
-    <h3 class="glitch" data-text="BAND">BAND</h3>
-
-    <div class="grid">
-        <div class="member"><strong>Cameryn Carr</strong><br>Vocals</div>
-        <div class="member"><strong>Jack Weatherby</strong><br>Guitar</div>
-        <div class="member"><strong>Colin Thomasson</strong><br>Bass</div>
-        <div class="member"><strong>Dallas Wiggins</strong><br>Drums</div>
-    </div>
+<h2>STREAM</h2>
+<div class="icons">
+<a href="https://open.spotify.com">🎧</a>
+<a href="https://music.apple.com">🍎</a>
+<a href="https://youtube.com">▶️</a>
+</div>
 </div>
 
 <div class="section">
-    <h3 class="glitch" data-text="MERCH">MERCH</h3>
-    <a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
+<h2>SOCIALS</h2>
+<div class="icons">
+<a href="https://instagram.com">📸</a>
+<a href="https://tiktok.com">🎵</a>
+<a href="https://facebook.com">📘</a>
+</div>
 </div>
 
 <div class="section">
-    <h3 class="glitch" data-text="EPK">EPK</h3>
-    <a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit">VIEW EPK</a>
+<h2>MERCH</h2>
+
+<div class="merch-grid">
+<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300">
 </div>
 
-<div class="section" id="contact">
-    <h3 class="glitch" data-text="CONTACT">CONTACT</h3>
-    <p>schmoozeband808@gmail.com</p>
+<a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
 
-    <p>
-        <a href="https://www.instagram.com/schmoozeband">Instagram</a><br>
-        <a href="https://www.tiktok.com/@schmoozeband">TikTok</a><br>
-        <a href="https://www.facebook.com/profile.php?id=61581580022146">Facebook</a>
-    </p>
 </div>
 
 <div class="section">
-    <h3 class="glitch" data-text="JOIN">JOIN EMAIL LIST</h3>
+<h2>JOIN EMAIL LIST</h2>
 
-    <form action="https://formspree.io/f/YOURCODE" method="POST">
-        <input type="email" placeholder="your email" required>
-        <br>
-        <button type="submit">join</button>
-    </form>
+<form action="https://formspree.io/f/YOURCODE" method="POST">
+<input type="email" placeholder="your email" required>
+<button type="submit">JOIN</button>
+</form>
+
 </div>
-
-<footer>
-    © SCHMOOZE
-</footer>
 
 </body>
 </html>
