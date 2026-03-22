@@ -12,88 +12,166 @@
 
 body {
     margin: 0;
-    background: #111;
+    background: #0d0d0d;
     color: #fefefd;
     font-family: 'Barlow', sans-serif;
 }
 
+/* TEXTURE + GRAIN */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/dots.png");
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/noise.png");
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 3;
+    animation: flicker 0.3s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.18; }
+    100% { opacity: 0.1; }
+}
+
+/* GLITCH EFFECT */
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+}
+
+.glitch:hover::before {
+    color: #ff2e2e;
+    transform: translate(2px, -2px);
+    opacity: 0.7;
+}
+
+.glitch:hover::after {
+    color: #ff7a00;
+    transform: translate(-2px, 2px);
+    opacity: 0.7;
+}
+
 /* NAV */
 nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid #333;
+    z-index: 10;
+    background: rgba(0,0,0,0.6);
 }
 
 nav h1 {
     font-family: 'Bebas Neue';
+    color: #ff2e2e;
     letter-spacing: 2px;
-    color: #bd1811;
 }
 
 nav a {
-    margin-left: 15px;
+    margin-left: 20px;
     text-decoration: none;
     color: white;
     font-size: 14px;
 }
 
 nav a:hover {
-    color: #ff4d00;
+    color: #ff7a00;
 }
 
-/* HERO */
+/* HERO FULL SCREEN */
 .hero {
-    padding: 80px 20px;
+    height: 100vh;
+    background: url("https://pasteboard.co/TjOPaSKcWwgf.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
 }
 
 .hero h2 {
     font-family: 'Bebas Neue';
-    font-size: 90px;
+    font-size: 110px;
     margin: 0;
-    color: #bd1811;
+    color: #ff2e2e;
 }
 
 .hero p {
-    font-size: 18px;
-    color: #aaa;
+    color: #ddd;
+    letter-spacing: 2px;
 }
 
 /* SECTIONS */
 .section {
     max-width: 900px;
-    margin: 60px auto;
+    margin: 80px auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 5;
 }
 
 .section h3 {
     font-family: 'Bebas Neue';
-    font-size: 40px;
-    border-bottom: 2px solid #bd1811;
+    font-size: 45px;
+    color: #ff2e2e;
+    border-bottom: 2px solid #ff7a00;
     display: inline-block;
-    margin-bottom: 20px;
 }
 
 /* SHOWS */
 .show {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #333;
-    padding: 10px 0;
+    border-bottom: 1px dashed #444;
+    padding: 12px 0;
 }
 
 /* BUTTON */
 .button {
-    border: 1px solid #bd1811;
+    border: 2px solid #ff2e2e;
     padding: 8px 14px;
     text-decoration: none;
     color: white;
-    font-size: 14px;
 }
 
 .button:hover {
-    background: #bd1811;
+    background: #ff2e2e;
 }
 
 /* GRID */
@@ -105,19 +183,32 @@ nav a:hover {
 
 /* MEMBERS */
 .member {
-    border-left: 2px solid #bd1811;
+    border-left: 3px solid #ff7a00;
     padding-left: 10px;
 }
 
-/* GALLERY */
+/* IMAGES */
 .gallery img {
     width: 100%;
-    filter: contrast(110%);
+    filter: contrast(160%) grayscale(50%) brightness(0.85);
 }
 
 /* LINKS */
 a {
-    color: #ff4d00;
+    color: #ff7a00;
+}
+
+/* FORM */
+input, button {
+    padding: 8px;
+    margin-top: 10px;
+    background: black;
+    border: 1px solid #ff2e2e;
+    color: white;
+}
+
+button:hover {
+    background: #ff2e2e;
 }
 
 /* FOOTER */
@@ -125,19 +216,6 @@ footer {
     text-align: center;
     padding: 40px;
     border-top: 1px solid #333;
-    margin-top: 60px;
-}
-
-input, button {
-    padding: 8px;
-    margin-top: 10px;
-    background: black;
-    border: 1px solid #bd1811;
-    color: white;
-}
-
-button:hover {
-    background: #bd1811;
 }
 
 </style>
@@ -146,48 +224,40 @@ button:hover {
 <body>
 
 <nav>
-    <h1>SCHMOOZE</h1>
+    <h1 class="glitch" data-text="SCHMOOZE">SCHMOOZE</h1>
     <div>
-        <a href="#about">About</a>
-        <a href="#shows">Shows</a>
-        <a href="#music">Music</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" class="glitch" data-text="About">About</a>
+        <a href="#shows" class="glitch" data-text="Shows">Shows</a>
+        <a href="#music" class="glitch" data-text="Music">Music</a>
+        <a href="#contact" class="glitch" data-text="Contact">Contact</a>
     </div>
 </nav>
 
 <div class="hero">
-    <h2>SCHMOOZE</h2>
-    <p>Alternative Rock • Athens, GA</p>
+    <div class="hero-content">
+        <h2 class="glitch" data-text="SCHMOOZE">SCHMOOZE</h2>
+        <p>Alternative Rock • Athens, GA</p>
+    </div>
 </div>
 
 <div class="section" id="about">
-    <h3>ABOUT</h3>
+    <h3 class="glitch" data-text="ABOUT">ABOUT</h3>
     <p>WRITE YOUR BIO HERE.</p>
 </div>
 
 <div class="section" id="shows">
-    <h3>SHOWS</h3>
+    <h3 class="glitch" data-text="SHOWS">SHOWS</h3>
 
-    <div class="show">
-        <span>4/3 — Ciné (Athens)</span>
-    </div>
-    <div class="show">
-        <span>4/4 — Smith’s Olde Bar (Atlanta)</span>
-    </div>
-    <div class="show">
-        <span>4/11 — Athentic Brewing</span>
-    </div>
-    <div class="show">
-        <span>5/8 — Ciné</span>
-    </div>
-    <div class="show">
-        <span>6/25 — Flicker</span>
-    </div>
+    <div class="show"><span>4/3 — Ciné (Athens)</span></div>
+    <div class="show"><span>4/4 — Smith’s Olde Bar (Atlanta)</span></div>
+    <div class="show"><span>4/11 — Athentic Brewing</span></div>
+    <div class="show"><span>5/8 — Ciné</span></div>
+    <div class="show"><span>6/25 — Flicker</span></div>
 
 </div>
 
 <div class="section" id="music">
-    <h3>MUSIC</h3>
+    <h3 class="glitch" data-text="MUSIC">MUSIC</h3>
 
     <p>
         <a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX">Spotify</a><br>
@@ -199,12 +269,12 @@ button:hover {
 </div>
 
 <div class="section gallery">
-    <h3>GALLERY</h3>
+    <h3 class="glitch" data-text="GALLERY">GALLERY</h3>
     <img src="https://pasteboard.co/TjOPaSKcWwgf.jpg">
 </div>
 
 <div class="section">
-    <h3>BAND</h3>
+    <h3 class="glitch" data-text="BAND">BAND</h3>
 
     <div class="grid">
         <div class="member"><strong>Cameryn Carr</strong><br>Vocals</div>
@@ -215,17 +285,17 @@ button:hover {
 </div>
 
 <div class="section">
-    <h3>MERCH</h3>
+    <h3 class="glitch" data-text="MERCH">MERCH</h3>
     <a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
 </div>
 
 <div class="section">
-    <h3>EPK</h3>
+    <h3 class="glitch" data-text="EPK">EPK</h3>
     <a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit">VIEW EPK</a>
 </div>
 
 <div class="section" id="contact">
-    <h3>CONTACT</h3>
+    <h3 class="glitch" data-text="CONTACT">CONTACT</h3>
     <p>schmoozeband808@gmail.com</p>
 
     <p>
@@ -236,7 +306,7 @@ button:hover {
 </div>
 
 <div class="section">
-    <h3>JOIN EMAIL LIST</h3>
+    <h3 class="glitch" data-text="JOIN">JOIN EMAIL LIST</h3>
 
     <form action="https://formspree.io/f/YOURCODE" method="POST">
         <input type="email" placeholder="your email" required>
