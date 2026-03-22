@@ -9,25 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-
 /* BASE */
 body {
     margin: 0;
     background: #0b0b0b;
     color: #fff;
     font-family: 'Barlow', sans-serif;
-    font-size: 20px; /* BIGGER BODY TEXT */
-}
-
-/* HALFTONE BACKGROUND */
-body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("https://www.transparenttextures.com/patterns/dots.png");
-    opacity: 0.25;
-    z-index: 0;
+    font-size: 20px;
 }
 
 /* FILM GRAIN */
@@ -39,7 +27,7 @@ body::after {
     background: url("https://www.transparenttextures.com/patterns/noise.png");
     opacity: 0.1;
     animation: flicker 0.4s infinite;
-    z-index: 1;
+    z-index: 0;
 }
 
 @keyframes flicker {
@@ -51,34 +39,27 @@ body::after {
 /* KEEP CONTENT ABOVE TEXTURE */
 * {
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
-/* NAV */
+/* NAV / BAND NAME */
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
 }
 
-nav img {
-    height: 50px;
-}
-
-nav a {
-    margin-left: 20px;
-    color: white;
-    text-decoration: none;
-}
-
-nav a:hover {
-    color: #ff2e7a;
+nav h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: #ff2e2e;
+    letter-spacing: 3px;
 }
 
 /* HERO */
 .hero {
-    height: 100vh;
+    height: 60vh;
     background: url("https://pasteboard.co/TjOPaSKcWwgf.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
@@ -86,10 +67,70 @@ nav a:hover {
     text-align: center;
 }
 
-.hero h1 {
+.hero h2 {
     font-family: 'Bebas Neue';
-    font-size: 100px;
+    font-size: 60px;
     color: #ff2e2e;
+}
+
+/* GLITCH EFFECT FOR HEADERS */
+.glitch {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50px;
+    position: relative;
+    color: #ff2e2e;
+    letter-spacing: 1px;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff7a00;
+    animation: glitchTop 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #ff00ff;
+    animation: glitchBottom 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitchTop {
+    0% { clip: rect(0, 9999px, 0, 0);}
+    10% { clip: rect(10px, 9999px, 50px, 0);}
+    20% { clip: rect(20px, 9999px, 40px, 0);}
+    30% { clip: rect(5px, 9999px, 45px, 0);}
+    40% { clip: rect(15px, 9999px, 25px, 0);}
+    50% { clip: rect(0, 9999px, 50px, 0);}
+    60% { clip: rect(25px, 9999px, 45px, 0);}
+    70% { clip: rect(10px, 9999px, 50px, 0);}
+    80% { clip: rect(5px, 9999px, 45px, 0);}
+    90% { clip: rect(15px, 9999px, 25px, 0);}
+    100% { clip: rect(0, 9999px, 50px, 0);}
+}
+
+@keyframes glitchBottom {
+    0% { clip: rect(0, 9999px, 0, 0);}
+    10% { clip: rect(20px, 9999px, 60px, 0);}
+    20% { clip: rect(10px, 9999px, 50px, 0);}
+    30% { clip: rect(5px, 9999px, 40px, 0);}
+    40% { clip: rect(15px, 9999px, 45px, 0);}
+    50% { clip: rect(0, 9999px, 50px, 0);}
+    60% { clip: rect(20px, 9999px, 60px, 0);}
+    70% { clip: rect(10px, 9999px, 50px, 0);}
+    80% { clip: rect(5px, 9999px, 40px, 0);}
+    90% { clip: rect(15px, 9999px, 45px, 0);}
+    100% { clip: rect(0, 9999px, 50px, 0);}
 }
 
 /* SECTION */
@@ -99,12 +140,14 @@ nav a:hover {
     padding: 0 20px;
 }
 
-.section h2 {
-    font-family: 'Bebas Neue';
-    font-size: 50px;
+.section a {
     color: #ff2e2e;
-    border-bottom: 3px solid #ff7a00;
-    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.section a:hover {
+    color: #ff7a00;
+    text-decoration: underline;
 }
 
 /* SHOWS */
@@ -125,21 +168,6 @@ nav a:hover {
 
 .ticket-btn:hover {
     background: #ff2e7a;
-}
-
-/* ICON LINKS */
-.icons {
-    display: flex;
-    gap: 20px;
-    font-size: 30px;
-}
-
-.icons a {
-    color: white;
-}
-
-.icons a:hover {
-    color: #ff7a00;
 }
 
 /* RELEASES */
@@ -164,21 +192,7 @@ nav a:hover {
     width: 100%;
 }
 
-/* BUTTON */
-.button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 20px;
-    border: 2px solid #ff2e2e;
-    text-decoration: none;
-    color: white;
-}
-
-.button:hover {
-    background: #ff2e2e;
-}
-
-/* EMAIL */
+/* EMAIL FORM */
 input {
     width: 100%;
     padding: 15px;
@@ -203,86 +217,88 @@ button:hover {
 
 <body>
 
+<!-- NAV / BAND NAME -->
 <nav>
-    <img src="logo.png">
-    <div>
-        <a href="#about">About</a>
-        <a href="#shows">Shows</a>
-        <a href="#music">Music</a>
-    </div>
+    <h1>SCHMOOZE</h1>
 </nav>
 
 <div class="hero">
-    <h1>Alternative Rock • Athens, GA</h1>
+    <h2>Alternative Rock • Athens, GA</h2>
 </div>
 
+<!-- NEWEST RELEASES -->
 <div class="section">
-<h2>NEWEST RELEASES</h2>
+<h2 class="glitch" data-text="NEWEST RELEASES">NEWEST RELEASES</h2>
 
 <div class="release">
-<img src="https://i.scdn.co/image/ab67616d0000b2738eb0e866594d03223e91c092">
+<img src="https://i.scdn.co/image/ab67616d0000b2738eb0e866594d03223e91c092" alt="Too Late to Plead Insanity">
 <div>
 <strong>Too Late to Plead Insanity</strong>
 </div>
 </div>
 
 <div class="release">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EDu4IUp8yJRi568H97aBDMr8iWuvc-V3PQ&s">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EDu4IUp8yJRi568H97aBDMr8iWuvc-V3PQ&s" alt="If You Say So EP">
 <div>
 <strong>If You Say So (EP)</strong>
 </div>
 </div>
-
 </div>
 
+<!-- SHOWS -->
 <div class="section" id="shows">
-<h2>SHOWS</h2>
+<h2 class="glitch" data-text="SHOWS">SHOWS</h2>
 
-<div class="show">4/3 Ciné <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">4/4 Smith’s Olde Bar <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">4/11 Athentic Brewing <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/3: Ciné (Athens, GA) <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/4: Smith’s Olde Bar (Atlanta, GA) <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/11: Athentic Brewing (Athens, GA) - Normaltown Music Fest <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">5/8: Ciné (Athens, GA) <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">6/25: Flicker (Athens, GA) <a class="ticket-btn" href="#">Tickets</a></div>
 
 </div>
 
-<div class="section">
-<h2>STREAM</h2>
-<div class="icons">
-<a href="https://open.spotify.com">🎧</a>
-<a href="https://music.apple.com">🍎</a>
-<a href="https://youtube.com">▶️</a>
-</div>
-</div>
-
-<div class="section">
-<h2>SOCIALS</h2>
-<div class="icons">
-<a href="https://instagram.com">📸</a>
-<a href="https://tiktok.com">🎵</a>
-<a href="https://facebook.com">📘</a>
-</div>
+<!-- STREAMING -->
+<div class="section" id="music">
+<h2 class="glitch" data-text="STREAMING">STREAMING</h2>
+<ul>
+    <li><a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX?si=Q1gT_jO2SCeB095EL-0iCA" target="_blank">Spotify</a></li>
+    <li><a href="https://music.apple.com/us/artist/schmooze/1741641206" target="_blank">Apple Music</a></li>
+    <li><a href="https://www.youtube.com/@SCHMOOZEBAND" target="_blank">YouTube</a></li>
+    <li><a href="https://linkin.bio/schmooze/?fbclid=PAZXh0bgNhZW0CMTEAAadKLzdhSFGJoaQf816zEqr0G3O65qXFRqjkIKhdik37oOfh8Sgcht4OXVWUPg_aem_uHdPV-D5aHT-jrrwN0cN9A" target="_blank">Link in Bio</a></li>
+</ul>
 </div>
 
-<div class="section">
-<h2>MERCH</h2>
+<!-- SOCIALS -->
+<div class="section" id="socials">
+<h2 class="glitch" data-text="SOCIALS">SOCIALS</h2>
+<ul>
+    <li><a href="https://www.instagram.com/schmoozeband?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
+    <li><a href="https://www.tiktok.com/@schmoozeband?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=61581580022146" target="_blank">Facebook</a></li>
+    <li><a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit?utm_content=DAG2dM6A6lA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">EPK</a></li>
+</ul>
+</div>
+
+<!-- MERCH -->
+<div class="section" id="merch">
+<h2 class="glitch" data-text="MERCH">MERCH</h2>
 
 <div class="merch-grid">
-<img src="https://via.placeholder.com/300">
-<img src="https://via.placeholder.com/300">
-<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300" alt="Merch Preview 1">
+<img src="https://via.placeholder.com/300" alt="Merch Preview 2">
+<img src="https://via.placeholder.com/300" alt="Merch Preview 3">
 </div>
 
-<a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
-
+<a class="ticket-btn" href="https://gfy-athens-ga.myshopify.com/collections/schmooze" target="_blank">SHOP MERCH</a>
 </div>
 
+<!-- EMAIL -->
 <div class="section">
-<h2>JOIN EMAIL LIST</h2>
-
+<h2 class="glitch" data-text="JOIN EMAIL LIST">JOIN EMAIL LIST</h2>
 <form action="https://formspree.io/f/YOURCODE" method="POST">
 <input type="email" placeholder="your email" required>
 <button type="submit">JOIN</button>
 </form>
-
 </div>
 
 </body>
