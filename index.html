@@ -3,199 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCHMOOZE - Alternative Rock, Athens GA</title>
 
-<title>SCHMOOZE</title>
-
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 
+<!-- Favicon (optional) -->
+<link rel="icon" href="IMG_6400.PNG" type="image/png">
+
 <style>
+/* --- BASE STYLES --- */
+:root {
+  --spot-red: rgb(189,24,17);
+  --spot-dark-red: rgb(66,0,1);
+  --spot-black: rgb(27,27,26);
+  --spot-white: rgb(254,254,253);
+  --hot-pink: rgb(255,20,147);
+  --deep-blue: rgb(0,50,100);
+}
 
-/* BASE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    margin: 0;
-    background: #0b0b0b;
-    color: #fff;
-    font-family: 'Barlow', sans-serif;
-    font-size: 20px; /* BIGGER BODY TEXT */
+  font-family: 'Barlow', sans-serif;
+  background-color: var(--spot-black);
+  color: var(--spot-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* HALFTONE BACKGROUND */
+/* --- HALFTONE / GRAIN BACKGROUND --- */
 body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("https://www.transparenttextures.com/patterns/dots.png");
-    opacity: 0.25;
-    z-index: 0;
-}
-
-/* FILM GRAIN */
-body::after {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("https://www.transparenttextures.com/patterns/noise.png");
-    opacity: 0.1;
-    animation: flicker 0.4s infinite;
-    z-index: 1;
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://i.imgur.com/1NcxrRh.png'); /* placeholder halftone texture */
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+  animation: flicker 5s infinite alternate;
 }
 
 @keyframes flicker {
-    0% { opacity: 0.08; }
-    50% { opacity: 0.15; }
-    100% { opacity: 0.08; }
+  0% {opacity:0.08;}
+  50% {opacity:0.12;}
+  100% {opacity:0.1;}
 }
 
-/* KEEP CONTENT ABOVE TEXTURE */
-* {
-    position: relative;
-    z-index: 2;
+/* --- HEADER --- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--spot-black);
+  z-index: 1;
+  position: relative;
 }
 
-/* NAV */
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: rgba(0,0,0,0.7);
+header img {
+  max-height: 120px;
+  object-fit: contain;
 }
 
-nav img {
-    height: 50px;
+/* --- SECTION STYLES --- */
+section {
+  padding: 60px 20px;
+  z-index: 1;
+  position: relative;
 }
 
-nav a {
-    margin-left: 20px;
-    color: white;
-    text-decoration: none;
+/* --- TITLES --- */
+h1, h2, h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
-nav a:hover {
-    color: #ff2e7a;
+h1 { font-size: 4rem; }
+h2 { font-size: 3rem; }
+h3 { font-size: 2rem; }
+
+/* --- SUBTEXT --- */
+p, li {
+  font-size: 1.2rem;
 }
 
-/* HERO */
-.hero {
-    height: 100vh;
-    background: url("https://pasteboard.co/TjOPaSKcWwgf.jpg") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+/* --- BAND MEMBERS --- */
+.band-members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 30px;
 }
 
-.hero h1 {
-    font-family: 'Bebas Neue';
-    font-size: 100px;
-    color: #ff2e2e;
+.member-card {
+  background-color: var(--spot-dark-red);
+  padding: 20px;
+  border: 2px solid var(--spot-red);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* SECTION */
-.section {
-    max-width: 1000px;
-    margin: 80px auto;
-    padding: 0 20px;
+.member-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
 }
 
-.section h2 {
-    font-family: 'Bebas Neue';
-    font-size: 50px;
-    color: #ff2e2e;
-    border-bottom: 3px solid #ff7a00;
-    margin-bottom: 30px;
+/* --- SHOWS --- */
+.shows ul {
+  list-style: none;
+  padding-left: 0;
 }
 
-/* SHOWS */
-.show {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 0;
-    border-bottom: 1px dashed #555;
-    font-size: 22px;
+.shows li {
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-.ticket-btn {
-    border: 2px solid #ff2e7a;
-    padding: 6px 12px;
-    text-decoration: none;
-    color: white;
-}
-
-.ticket-btn:hover {
-    background: #ff2e7a;
-}
-
-/* ICON LINKS */
-.icons {
-    display: flex;
-    gap: 20px;
-    font-size: 30px;
-}
-
-.icons a {
-    color: white;
-}
-
-.icons a:hover {
-    color: #ff7a00;
-}
-
-/* RELEASES */
-.release {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.release img {
-    width: 120px;
-}
-
-/* MERCH GRID */
+/* --- MERCH --- */
 .merch-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 20px;
 }
 
 .merch-grid img {
-    width: 100%;
+  width: 100%;
+  border: 2px solid var(--spot-red);
 }
 
-/* BUTTON */
-.button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 20px;
-    border: 2px solid #ff2e2e;
-    text-decoration: none;
-    color: white;
+/* --- NEWEST RELEASES --- */
+.releases {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-.button:hover {
-    background: #ff2e2e;
+.release-card img {
+  width: 200px;
+  border: 2px solid var(--hot-pink);
+  margin-bottom: 10px;
 }
 
-/* EMAIL */
-input {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
+/* --- SOCIAL LINKS --- */
+.socials a {
+  margin-right: 15px;
+  display: inline-block;
+  color: var(--spot-white);
+  transition: transform 0.2s;
 }
 
-button {
-    padding: 15px 25px;
-    font-size: 18px;
-    margin-top: 10px;
-    border: 2px solid #ff2e2e;
-    background: black;
-    color: white;
+.socials a:hover {
+  transform: scale(1.2);
 }
 
-button:hover {
-    background: #ff2e2e;
+/* --- BUTTONS --- */
+button, .button {
+  background-color: var(--spot-red);
+  color: var(--spot-white);
+  padding: 10px 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover, .button:hover {
+  background-color: var(--hot-pink);
+}
+
+/* --- MEDIA --- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 20px;
+}
+
+/* --- VIDEO EMBED --- */
+.video-embed iframe {
+  width: 100%;
+  height: 400px;
+}
+
+/* --- EMAIL FORM --- */
+form input, form button {
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+form input {
+  width: 250px;
+}
+
+/* --- CUSTOM ANIMATIONS --- */
+@keyframes grainFlicker {
+  0% {opacity:0.05;}
+  50% {opacity:0.15;}
+  100% {opacity:0.1;}
 }
 
 </style>
@@ -203,87 +218,137 @@ button:hover {
 
 <body>
 
-<nav>
-    <img src="IMG_6400.PNG">
-    <div>
-        <a href="#about">About</a>
-        <a href="#shows">Shows</a>
-        <a href="#music">Music</a>
+<!-- HEADER / LOGO -->
+<header>
+  <img src="IMG_6400.PNG" alt="SCHMOOZE Logo">
+</header>
+
+<!-- BIO / ABOUT -->
+<section id="about">
+  <h2>About</h2>
+  <p>
+    Insert your band biography here. Customize this text to tell your story, influences, and beliefs.
+  </p>
+</section>
+
+<!-- BAND MEMBERS -->
+<section id="members">
+  <h2>Band Members</h2>
+  <div class="band-members">
+    <div class="member-card">
+      <img src="https://pasteboard.co/TjOPaSKcWwgf.jpg" alt="Cameryn Carr">
+      <h3>Cameryn Carr</h3>
+      <p>Lead Vocals</p>
     </div>
-</nav>
+    <div class="member-card">
+      <img src="member2.jpg" alt="Jack Weatherby">
+      <h3>Jack Weatherby</h3>
+      <p>Lead Guitar</p>
+    </div>
+    <div class="member-card">
+      <img src="member3.jpg" alt="Colin Thomasson">
+      <h3>Colin Thomasson</h3>
+      <p>Bass</p>
+    </div>
+    <div class="member-card">
+      <img src="member4.jpg" alt="Dallas Wiggins">
+      <h3>Dallas Wiggins</h3>
+      <p>Drums</p>
+    </div>
+  </div>
+</section>
 
-<div class="hero">
-    <h1>Alternative Rock • Athens, GA</h1>
-</div>
+<!-- UPCOMING SHOWS -->
+<section id="shows" class="shows">
+  <h2>Upcoming Shows</h2>
+  <ul>
+    <li>4/3: Ciné (Athens, GA)</li>
+    <li>4/4: Smith’s Olde Bar (Atlanta, GA)</li>
+    <li>4/11: Athentic Brewing (Athens, GA) - Normaltown Music Fest</li>
+    <li>5/8: Ciné (Athens, GA)</li>
+    <li>6/25: Flicker (Athens, GA)</li>
+  </ul>
+</section>
 
-<div class="section">
-<h2>NEWEST RELEASES</h2>
+<!-- NEWEST RELEASES -->
+<section id="releases">
+  <h2>Newest Releases</h2>
+  <div class="releases">
+    <div class="release-card">
+      <img src="TLTPI COVER ART.jpeg" alt="Too Late to Plead Insanity">
+      <h3>Too Late to Plead Insanity</h3>
+    </div>
+    <div class="release-card">
+      <img src="IYSS COVER ART.jpg" alt="If You Say So EP">
+      <h3>If You Say So EP</h3>
+    </div>
+  </div>
+</section>
 
-<div class="release">
-<img src="https://i.scdn.co/image/ab67616d0000b2738eb0e866594d03223e91c092">
-<div>
-<strong>Too Late to Plead Insanity</strong>
-</div>
-</div>
+<!-- STREAMING LINKS -->
+<section id="music">
+  <h2>Listen</h2>
+  <div class="socials">
+    <a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX?si=Q1gT_jO2SCeB095EL-0iCA" target="_blank">Spotify</a>
+    <a href="https://music.apple.com/us/artist/schmooze/1741641206" target="_blank">Apple Music</a>
+    <a href="https://www.youtube.com/@SCHMOOZEBAND" target="_blank">YouTube</a>
+    <a href="https://linkin.bio/schmooze/?fbclid=PAZXh0bgNhZW0CMTEAAadKLzdhSFGJoaQf816zEqr0G3O65qXFRqjkIKhdik37oOfh8Sgcht4OXVWUPg_aem_uHdPV-D5aHT-jrrwN0cN9A" target="_blank">Link in Bio</a>
+  </div>
+</section>
 
-<div class="release">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EDu4IUp8yJRi568H97aBDMr8iWuvc-V3PQ&s">
-<div>
-<strong>If You Say So (EP)</strong>
-</div>
-</div>
+<!-- MERCH -->
+<section id="merch">
+  <h2>Merch</h2>
+  <div class="merch-grid">
+    <a href="https://gfy-athens-ga.myshopify.com/collections/schmooze" target="_blank">
+      <img src="merch1.jpg" alt="Merch Preview 1">
+    </a>
+    <a href="https://gfy-athens-ga.myshopify.com/collections/schmooze" target="_blank">
+      <img src="merch2.jpg" alt="Merch Preview 2">
+    </a>
+  </div>
+</section>
 
-</div>
+<!-- PHOTO / VIDEO GALLERY -->
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="photo1.jpg" alt="Gallery Image 1">
+    <img src="photo2.jpg" alt="Gallery Image 2">
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Music Video" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
 
-<div class="section" id="shows">
-<h2>SHOWS</h2>
+<!-- EPK -->
+<section id="epk">
+  <h2>EPK</h2>
+  <a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit?utm_content=DAG2dM6A6lA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" class="button">View EPK</a>
+</section>
 
-<div class="show">4/3 Ciné <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">4/4 Smith’s Olde Bar <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">4/11 Athentic Brewing <a class="ticket-btn" href="#">Tickets</a></div>
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact / Booking</h2>
+  <p>Email: <a href="mailto:schmoozeband808@gmail.com">schmoozeband808@gmail.com</a></p>
+  <p>Socials: @schmoozeband</p>
 
-</div>
+  <h3>Join Our Email List</h3>
+  <form>
+    <input type="email" placeholder="Your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
 
-<div class="section">
-<h2>STREAM</h2>
-<div class="icons">
-<a href="https://open.spotify.com">🎧</a>
-<a href="https://music.apple.com">🍎</a>
-<a href="https://youtube.com">▶️</a>
-</div>
-</div>
-
-<div class="section">
-<h2>SOCIALS</h2>
-<div class="icons">
-<a href="https://instagram.com">📸</a>
-<a href="https://tiktok.com">🎵</a>
-<a href="https://facebook.com">📘</a>
-</div>
-</div>
-
-<div class="section">
-<h2>MERCH</h2>
-
-<div class="merch-grid">
-<img src="https://via.placeholder.com/300">
-<img src="https://via.placeholder.com/300">
-<img src="https://via.placeholder.com/300">
-</div>
-
-<a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
-
-</div>
-
-<div class="section">
-<h2>JOIN EMAIL LIST</h2>
-
-<form action="https://formspree.io/f/YOURCODE" method="POST">
-<input type="email" placeholder="your email" required>
-<button type="submit">JOIN</button>
-</form>
-
-</div>
+<!-- SOCIALS -->
+<section id="socials">
+  <h2>Follow Us</h2>
+  <div class="socials">
+    <a href="https://www.instagram.com/schmoozeband" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@schmoozeband" target="_blank">TikTok</a>
+    <a href="https://www.facebook.com/profile.php?id=61581580022146" target="_blank">Facebook</a>
+  </div>
+</section>
 
 </body>
 </html>
