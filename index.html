@@ -6,140 +6,138 @@
 
 <title>SCHMOOZE</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body {
     margin: 0;
-    background: #1b1b1a;
+    background: #111;
     color: #fefefd;
-    font-family: 'Special Elite', monospace;
-    overflow-x: hidden;
+    font-family: 'Barlow', sans-serif;
 }
 
-/* grain overlay */
-body::after {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
-    opacity: 0.4;
-    pointer-events: none;
+/* NAV */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #333;
 }
 
-/* header chaos */
-header {
-    text-align: center;
+nav h1 {
+    font-family: 'Bebas Neue';
+    letter-spacing: 2px;
+    color: #bd1811;
+}
+
+nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #ff4d00;
+}
+
+/* HERO */
+.hero {
     padding: 80px 20px;
-    position: relative;
+    text-align: center;
 }
 
-header h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 110px;
+.hero h2 {
+    font-family: 'Bebas Neue';
+    font-size: 90px;
     margin: 0;
     color: #bd1811;
-    transform: rotate(-2deg);
 }
 
-header p {
+.hero p {
     font-size: 18px;
-    letter-spacing: 2px;
+    color: #aaa;
 }
 
-/* floating collage blocks */
-.block {
-    position: relative;
-    background: #000;
-    border: 2px solid #bd1811;
-    padding: 20px;
+/* SECTIONS */
+.section {
+    max-width: 900px;
     margin: 60px auto;
-    width: 85%;
-    transform: rotate(-1deg);
+    padding: 0 20px;
 }
 
-/* random offsets */
-.block:nth-child(even) {
-    transform: rotate(1deg);
-    left: 10px;
-}
-
-.block:nth-child(odd) {
-    left: -10px;
-}
-
-/* headings */
-h2 {
+.section h3 {
     font-family: 'Bebas Neue';
     font-size: 40px;
-    color: #bd1811;
-    margin-bottom: 10px;
-}
-
-/* links */
-a {
-    color: #bd1811;
-    text-decoration: none;
-}
-
-a:hover {
-    background: #bd1811;
-    color: black;
-}
-
-/* shows gritty list */
-.show {
-    border-bottom: 1px dashed #bd1811;
-    padding: 8px 0;
-}
-
-/* gallery chaos */
-.gallery img {
-    width: 100%;
-    margin-top: 10px;
-    filter: contrast(120%) grayscale(30%);
-}
-
-/* band members stacked */
-.member {
-    margin-bottom: 20px;
-    border-left: 3px solid #bd1811;
-    padding-left: 10px;
-}
-
-/* buttons */
-.button {
+    border-bottom: 2px solid #bd1811;
     display: inline-block;
-    border: 2px solid #bd1811;
-    padding: 10px 15px;
-    margin-top: 10px;
-    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* SHOWS */
+.show {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+}
+
+/* BUTTON */
+.button {
+    border: 1px solid #bd1811;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
 }
 
 .button:hover {
     background: #bd1811;
-    color: black;
 }
 
-/* glitch hover */
-.glitch:hover {
-    transform: scale(1.05) rotate(1deg);
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-/* form */
+/* MEMBERS */
+.member {
+    border-left: 2px solid #bd1811;
+    padding-left: 10px;
+}
+
+/* GALLERY */
+.gallery img {
+    width: 100%;
+    filter: contrast(110%);
+}
+
+/* LINKS */
+a {
+    color: #ff4d00;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid #333;
+    margin-top: 60px;
+}
+
 input, button {
-    background: black;
-    color: white;
-    border: 1px solid #bd1811;
     padding: 8px;
     margin-top: 10px;
+    background: black;
+    border: 1px solid #bd1811;
+    color: white;
 }
 
 button:hover {
     background: #bd1811;
-    color: black;
 }
 
 </style>
@@ -147,85 +145,109 @@ button:hover {
 
 <body>
 
-<header>
+<nav>
     <h1>SCHMOOZE</h1>
+    <div>
+        <a href="#about">About</a>
+        <a href="#shows">Shows</a>
+        <a href="#music">Music</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <h2>SCHMOOZE</h2>
     <p>Alternative Rock • Athens, GA</p>
-</header>
-
-<div class="block glitch">
-<h2>ABOUT</h2>
-<p>
-WRITE YOUR OWN BIO HERE. make it loud, messy, real. don’t overthink it.
-</p>
 </div>
 
-<div class="block glitch">
-<h2>SHOWS</h2>
-
-<div class="show">4/3 — Ciné (Athens, GA)</div>
-<div class="show">4/4 — Smith’s Olde Bar (Atlanta, GA)</div>
-<div class="show">4/11 — Athentic Brewing (Normaltown Music Fest)</div>
-<div class="show">5/8 — Ciné (Athens, GA)</div>
-<div class="show">6/25 — Flicker (Athens, GA)</div>
-
+<div class="section" id="about">
+    <h3>ABOUT</h3>
+    <p>WRITE YOUR BIO HERE.</p>
 </div>
 
-<div class="block glitch">
-<h2>MUSIC</h2>
-<a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX" target="_blank">Spotify</a><br>
-<a href="https://music.apple.com/us/artist/schmooze/1741641206" target="_blank">Apple Music</a><br>
-<a href="https://www.youtube.com/@SCHMOOZEBAND" target="_blank">YouTube</a>
-</div>
+<div class="section" id="shows">
+    <h3>SHOWS</h3>
 
-<div class="block glitch">
-<h2>VIDEO</h2>
-<iframe width="100%" height="300" src="https://www.youtube.com/embed/VIDEOID" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<div class="block glitch gallery">
-<h2>GALLERY</h2>
-<img src="https://pasteboard.co/TjOPaSKcWwgf.jpg">
-</div>
-
-<div class="block glitch">
-<h2>BAND</h2>
-
-<div class="member"><strong>Cameryn Carr — Vocals</strong><br>write something</div>
-<div class="member"><strong>Jack Weatherby — Guitar</strong><br>write something</div>
-<div class="member"><strong>Colin Thomasson — Bass</strong><br>write something</div>
-<div class="member"><strong>Dallas Wiggins — Drums</strong><br>write something</div>
+    <div class="show">
+        <span>4/3 — Ciné (Athens)</span>
+    </div>
+    <div class="show">
+        <span>4/4 — Smith’s Olde Bar (Atlanta)</span>
+    </div>
+    <div class="show">
+        <span>4/11 — Athentic Brewing</span>
+    </div>
+    <div class="show">
+        <span>5/8 — Ciné</span>
+    </div>
+    <div class="show">
+        <span>6/25 — Flicker</span>
+    </div>
 
 </div>
 
-<div class="block glitch">
-<h2>MERCH</h2>
-<a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze" target="_blank">SHOP</a>
+<div class="section" id="music">
+    <h3>MUSIC</h3>
+
+    <p>
+        <a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX">Spotify</a><br>
+        <a href="https://music.apple.com/us/artist/schmooze/1741641206">Apple Music</a><br>
+        <a href="https://www.youtube.com/@SCHMOOZEBAND">YouTube</a>
+    </p>
+
+    <iframe width="100%" height="300" src="https://www.youtube.com/embed/VIDEOID" frameborder="0" allowfullscreen></iframe>
 </div>
 
-<div class="block glitch">
-<h2>EPK</h2>
-<a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit" target="_blank">VIEW EPK</a>
+<div class="section gallery">
+    <h3>GALLERY</h3>
+    <img src="https://pasteboard.co/TjOPaSKcWwgf.jpg">
 </div>
 
-<div class="block glitch">
-<h2>CONTACT</h2>
-<p>schmoozeband808@gmail.com</p>
+<div class="section">
+    <h3>BAND</h3>
 
-<a href="https://www.instagram.com/schmoozeband">Instagram</a><br>
-<a href="https://www.tiktok.com/@schmoozeband">TikTok</a><br>
-<a href="https://www.facebook.com/profile.php?id=61581580022146">Facebook</a>
+    <div class="grid">
+        <div class="member"><strong>Cameryn Carr</strong><br>Vocals</div>
+        <div class="member"><strong>Jack Weatherby</strong><br>Guitar</div>
+        <div class="member"><strong>Colin Thomasson</strong><br>Bass</div>
+        <div class="member"><strong>Dallas Wiggins</strong><br>Drums</div>
+    </div>
 </div>
 
-<div class="block glitch">
-<h2>JOIN EMAIL LIST</h2>
-
-<form action="https://formspree.io/f/YOURCODE" method="POST">
-<input type="email" name="email" placeholder="email" required>
-<br>
-<button type="submit">join</button>
-</form>
-
+<div class="section">
+    <h3>MERCH</h3>
+    <a class="button" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
 </div>
+
+<div class="section">
+    <h3>EPK</h3>
+    <a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit">VIEW EPK</a>
+</div>
+
+<div class="section" id="contact">
+    <h3>CONTACT</h3>
+    <p>schmoozeband808@gmail.com</p>
+
+    <p>
+        <a href="https://www.instagram.com/schmoozeband">Instagram</a><br>
+        <a href="https://www.tiktok.com/@schmoozeband">TikTok</a><br>
+        <a href="https://www.facebook.com/profile.php?id=61581580022146">Facebook</a>
+    </p>
+</div>
+
+<div class="section">
+    <h3>JOIN EMAIL LIST</h3>
+
+    <form action="https://formspree.io/f/YOURCODE" method="POST">
+        <input type="email" placeholder="your email" required>
+        <br>
+        <button type="submit">join</button>
+    </form>
+</div>
+
+<footer>
+    © SCHMOOZE
+</footer>
 
 </body>
 </html>
