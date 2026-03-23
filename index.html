@@ -19,44 +19,50 @@ body {
     overflow-x: hidden;
 }
 
-/* HALFTONE LAYER */
+/* FILM GRAIN + HALFTONE LAYER */
 body::before {
     content: "";
     position: fixed;
-    width: 100%;
-    height: 100%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     background: url("https://www.transparenttextures.com/patterns/dots.png");
-    opacity: 0.07;
+    opacity: 0.12;
+    mix-blend-mode: overlay;
     pointer-events: none;
     z-index: 0;
-    animation: halftoneMove 18s linear infinite;
+    animation: halftoneMove 20s linear infinite;
 }
 
-/* FILM GRAIN */
 body::after {
     content: "";
     position: fixed;
-    width: 100%;
-    height: 100%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     background: url("https://www.transparenttextures.com/patterns/noise.png");
-    opacity: 0.12;
+    opacity: 0.3;
+    mix-blend-mode: soft-light;
     pointer-events: none;
     z-index: 0;
-    animation: grainMove 0.5s steps(2) infinite;
+    animation: grainFlicker 0.3s steps(3) infinite;
 }
 
-/* ANIMATIONS */
 @keyframes halftoneMove {
-    0% { transform: translate(0,0); }
-    50% { transform: translate(-12px, 8px); }
+    0%   { transform: translate(0,0); }
+    25%  { transform: translate(-15px, 10px); }
+    50%  { transform: translate(10px, -10px); }
+    75%  { transform: translate(-5px, 5px); }
     100% { transform: translate(0,0); }
 }
 
-@keyframes grainMove {
-    0% { transform: translate(0,0); }
-    25% { transform: translate(-2px,2px); }
-    50% { transform: translate(2px,-2px); }
-    75% { transform: translate(-1px,-1px); }
+@keyframes grainFlicker {
+    0%   { transform: translate(0,0); }
+    25%  { transform: translate(-2px,2px); }
+    50%  { transform: translate(2px,-2px); }
+    75%  { transform: translate(-1px,-1px); }
     100% { transform: translate(0,0); }
 }
 
@@ -78,7 +84,6 @@ body::after {
     color: #ff2e2e;
     margin: 0;
     letter-spacing: 4px;
-    transform: rotate(-1deg);
 }
 
 .hero h2 {
@@ -86,7 +91,6 @@ body::after {
     font-weight: 100;
     font-size: 32px;
     margin-top: 10px;
-    transform: rotate(1deg);
 }
 
 /* SECTIONS */
@@ -101,7 +105,6 @@ body::after {
     font-family: 'Bebas Neue';
     font-size: 52px;
     color: #ff2e2e;
-    transform: rotate(-1deg);
 }
 
 /* GLITCH ON HOVER */
@@ -251,6 +254,73 @@ If You Say So (EP)
 <p class="subtext">write your bio here</p>
 </div>
 
-<div class="section">
+<div class="section" id="shows">
 <h2 class="glitch">SHOWS</h2>
-<div class="show">4/3 Ciné <a class="ticket
+<div class="show">4/3 Ciné <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/4 Smith’s Olde Bar <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">4/11 Athentic Brewing <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">5/8 Ciné <a class="ticket-btn" href="#">Tickets</a></div>
+<div class="show">6/25 Flicker <a class="ticket-btn" href="#">Tickets</a></div>
+</div>
+
+<div class="section">
+<h2 class="glitch">STREAMING</h2>
+<div class="subtext">
+<a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX?si=Q1gT_jO2SCeB095EL-0iCA" target="_blank">Spotify</a><br>
+<a href="https://music.apple.com/us/artist/schmooze/1741641206" target="_blank">Apple Music</a><br>
+<a href="https://www.youtube.com/@SCHMOOZEBAND" target="_blank">YouTube</a>
+</div>
+</div>
+
+<div class="section">
+<h2 class="glitch">SOCIALS</h2>
+<div class="subtext">
+<a href="https://www.instagram.com/schmoozeband?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a><br>
+<a href="https://www.tiktok.com/@schmoozeband?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a><br>
+<a href="https://www.facebook.com/profile.php?id=61581580022146" target="_blank">Facebook</a>
+</div>
+</div>
+
+<div class="section">
+<h2 class="glitch">EPK</h2>
+<div class="subtext">
+<a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit?utm_content=DAG2dM6A6lA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+View EPK
+</a>
+</div>
+</div>
+
+<div class="section">
+<h2 class="glitch">MERCH</h2>
+<div class="merch-grid">
+<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300">
+<img src="https://via.placeholder.com/300">
+</div>
+<a class="ticket-btn" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
+</div>
+
+<div class="section">
+<h2 class="glitch">BAND PHOTOS</h2>
+<div class="photo-grid">
+<!-- add your photos here -->
+</div>
+</div>
+
+<div class="section">
+<h2 class="glitch">VIDEOS</h2>
+<div class="video-grid">
+<!-- add your video iframes here -->
+</div>
+</div>
+
+<div class="section">
+<h2 class="glitch">JOIN EMAIL LIST</h2>
+<form action="https://formspree.io/f/YOURCODE" method="POST">
+<input type="email" placeholder="your email" required>
+<button type="submit">JOIN</button>
+</form>
+</div>
+
+</body>
+</html>
