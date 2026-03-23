@@ -13,13 +13,13 @@
 /* BASE */
 body {
     margin: 0;
-    background: #0b0b0b;
+    background: url("TEXTURE.jpg") center/cover fixed no-repeat;
     color: #fff;
     font-family: 'Barlow', sans-serif;
     overflow-x: hidden;
 }
 
-/* FILM GRAIN + HALFTONE LAYER */
+/* HALFTONE OVERLAY */
 body::before {
     content: "";
     position: fixed;
@@ -35,6 +35,7 @@ body::before {
     animation: halftoneMove 20s linear infinite;
 }
 
+/* FILM GRAIN */
 body::after {
     content: "";
     position: fixed;
@@ -50,19 +51,20 @@ body::after {
     animation: grainFlicker 0.3s steps(3) infinite;
 }
 
+/* ANIMATIONS */
 @keyframes halftoneMove {
-    0%   { transform: translate(0,0); }
-    25%  { transform: translate(-15px, 10px); }
-    50%  { transform: translate(10px, -10px); }
-    75%  { transform: translate(-5px, 5px); }
+    0% { transform: translate(0,0); }
+    25% { transform: translate(-15px, 10px); }
+    50% { transform: translate(10px, -10px); }
+    75% { transform: translate(-5px, 5px); }
     100% { transform: translate(0,0); }
 }
 
 @keyframes grainFlicker {
-    0%   { transform: translate(0,0); }
-    25%  { transform: translate(-2px,2px); }
-    50%  { transform: translate(2px,-2px); }
-    75%  { transform: translate(-1px,-1px); }
+    0% { transform: translate(0,0); }
+    25% { transform: translate(-2px,2px); }
+    50% { transform: translate(2px,-2px); }
+    75% { transform: translate(-1px,-1px); }
     100% { transform: translate(0,0); }
 }
 
@@ -78,12 +80,11 @@ body::after {
     padding: 100px 20px 60px;
 }
 
-.hero h1 {
-    font-family: 'Bebas Neue';
-    font-size: 140px;
-    color: #ff2e2e;
-    margin: 0;
-    letter-spacing: 4px;
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 600px;
 }
 
 .hero h2 {
@@ -100,6 +101,13 @@ body::after {
     padding: 0 20px;
 }
 
+/* SIDE BY SIDE */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
 /* HEADERS */
 .glitch {
     font-family: 'Bebas Neue';
@@ -107,18 +115,16 @@ body::after {
     color: #ff2e2e;
 }
 
-/* GLITCH ON HOVER */
+/* GLITCH HOVER */
 .glitch:hover {
-    text-shadow: 
-        2px 0 #ff7a00,
-        -2px 0 #ff00ff;
+    text-shadow: 2px 0 #ff7a00, -2px 0 #ff00ff;
 }
 
 /* SUBTEXT */
 .subtext {
     font-family: 'Montserrat';
     font-weight: 100;
-    font-size: 28px;
+    font-size: 24px;
 }
 
 /* LINKS */
@@ -139,7 +145,7 @@ a:hover {
     padding: 6px 0;
     font-family: 'Montserrat';
     font-weight: 100;
-    font-size: 28px;
+    font-size: 24px;
 }
 
 /* BUTTON */
@@ -166,36 +172,23 @@ a:hover {
     border: 2px solid #ff2e2e;
 }
 
-/* PHOTO GRID */
-.photo-grid {
+/* MERCH */
+.merch-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.photo-grid img {
+.merch-grid img {
     width: 100%;
     border: 2px solid #fff;
-    transform: rotate(-1deg);
-    transition: 0.2s;
 }
 
-.photo-grid img:hover {
-    transform: rotate(1deg) scale(1.02);
-}
-
-/* VIDEO GRID */
-.video-grid {
+/* GALLERY */
+.gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 10px;
-}
-
-.video-grid iframe {
-    width: 100%;
-    height: 180px;
-    border: 2px solid #fff;
-    transform: rotate(1deg);
+    gap: 15px;
 }
 
 /* EMAIL */
@@ -222,11 +215,14 @@ button:hover {
 <body>
 
 <div class="hero">
-    <h1>SCHMOOZE</h1>
+    <img src="SCHMOOZE LOGO JPG.jpg" class="logo">
     <h2>Alternative Rock • Athens, GA</h2>
 </div>
 
-<div class="section">
+<!-- NEW RELEASES + ABOUT -->
+<div class="section row">
+
+<div>
 <h2 class="glitch">NEWEST RELEASES</h2>
 
 <div class="release">
@@ -249,11 +245,14 @@ If You Say So (EP)
 
 </div>
 
-<div class="section">
+<div>
 <h2 class="glitch">ABOUT</h2>
 <p class="subtext">write your bio here</p>
 </div>
 
+</div>
+
+<!-- SHOWS -->
 <div class="section" id="shows">
 <h2 class="glitch">SHOWS</h2>
 <div class="show">4/3 Ciné <a class="ticket-btn" href="#">Tickets</a></div>
@@ -263,7 +262,10 @@ If You Say So (EP)
 <div class="show">6/25 Flicker <a class="ticket-btn" href="#">Tickets</a></div>
 </div>
 
-<div class="section">
+<!-- STREAMING + SOCIALS -->
+<div class="section row">
+
+<div>
 <h2 class="glitch">STREAMING</h2>
 <div class="subtext">
 <a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX?si=Q1gT_jO2SCeB095EL-0iCA" target="_blank">Spotify</a><br>
@@ -272,48 +274,49 @@ If You Say So (EP)
 </div>
 </div>
 
-<div class="section">
+<div>
 <h2 class="glitch">SOCIALS</h2>
 <div class="subtext">
-<a href="https://www.instagram.com/schmoozeband?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a><br>
-<a href="https://www.tiktok.com/@schmoozeband?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a><br>
+<a href="https://www.instagram.com/schmoozeband" target="_blank">Instagram</a><br>
+<a href="https://www.tiktok.com/@schmoozeband" target="_blank">TikTok</a><br>
 <a href="https://www.facebook.com/profile.php?id=61581580022146" target="_blank">Facebook</a>
 </div>
 </div>
 
+</div>
+
+<!-- EPK -->
 <div class="section">
 <h2 class="glitch">EPK</h2>
 <div class="subtext">
-<a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit?utm_content=DAG2dM6A6lA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+<a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit" target="_blank">
 View EPK
 </a>
 </div>
 </div>
 
+<!-- SHOP MERCH -->
 <div class="section">
-<h2 class="glitch">MERCH</h2>
+<h2 class="glitch">SHOP MERCH</h2>
+
 <div class="merch-grid">
 <img src="https://via.placeholder.com/300">
 <img src="https://via.placeholder.com/300">
 <img src="https://via.placeholder.com/300">
 </div>
+
 <a class="ticket-btn" href="https://gfy-athens-ga.myshopify.com/collections/schmooze">SHOP MERCH</a>
 </div>
 
+<!-- GALLERY -->
 <div class="section">
-<h2 class="glitch">BAND PHOTOS</h2>
-<div class="photo-grid">
-<!-- add your photos here -->
+<h2 class="glitch">GALLERY</h2>
+<div class="gallery">
+<!-- add photos + videos -->
 </div>
 </div>
 
-<div class="section">
-<h2 class="glitch">VIDEOS</h2>
-<div class="video-grid">
-<!-- add your video iframes here -->
-</div>
-</div>
-
+<!-- EMAIL -->
 <div class="section">
 <h2 class="glitch">JOIN EMAIL LIST</h2>
 <form action="https://formspree.io/f/YOURCODE" method="POST">
