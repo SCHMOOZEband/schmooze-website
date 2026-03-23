@@ -6,14 +6,19 @@
 
 <title>SCHMOOZE</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@700&family=Barlow:wght@400;600&family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
+
+<!-- CHEEDAR GOTHIC (ADOBE/TYPEKIT STYLE IMPORT FALLBACK) -->
+<style>
+@import url("https://use.typekit.net/your-kit-id.css"); /* replace if you have a real kit */
+</style>
 
 <style>
 
 /* BASE */
 body {
     margin: 0;
-    background: url("TEXTURE.jpg") center/cover fixed no-repeat;
+    background: url("HALFTONE.jpg") center/cover fixed no-repeat;
     color: #fff;
     font-family: 'Barlow', sans-serif;
     overflow-x: hidden;
@@ -101,18 +106,26 @@ body::after {
     padding: 0 20px;
 }
 
-/* SIDE BY SIDE */
+/* GRID ROWS */
 .row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
-/* HEADERS */
+.row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+/* HEADERS (UPDATED FONT + COLOR) */
 .glitch {
-    font-family: 'Bebas Neue';
+    font-family: cheddar-gothic-sans, sans-serif;
+    font-style: normal;
+    font-weight: 400;
     font-size: 52px;
-    color: #ff2e2e;
+    color: #ffffff;
 }
 
 /* GLITCH HOVER */
@@ -215,7 +228,7 @@ button:hover {
 <body>
 
 <div class="hero">
-    <img src="SCHMOOZE LOGO JPG.jpg" class="logo">
+    <img src="SCHMOOZE LOGO PNG.png" class="logo">
     <h2>Alternative Rock • Athens, GA</h2>
 </div>
 
@@ -262,8 +275,8 @@ If You Say So (EP)
 <div class="show">6/25 Flicker <a class="ticket-btn" href="#">Tickets</a></div>
 </div>
 
-<!-- STREAMING + SOCIALS -->
-<div class="section row">
+<!-- STREAMING + SOCIALS + EPK -->
+<div class="section row-3">
 
 <div>
 <h2 class="glitch">STREAMING</h2>
@@ -283,16 +296,15 @@ If You Say So (EP)
 </div>
 </div>
 
-</div>
-
-<!-- EPK -->
-<div class="section">
+<div>
 <h2 class="glitch">EPK</h2>
 <div class="subtext">
 <a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit" target="_blank">
 View EPK
 </a>
 </div>
+</div>
+
 </div>
 
 <!-- SHOP MERCH -->
