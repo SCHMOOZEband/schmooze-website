@@ -9,33 +9,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@700&family=Barlow:wght@400;600&family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
 
 <style>
+
 /* BASE */
 body {
     margin: 0;
     background: #0b0b0b;
     color: #fff;
     font-family: 'Barlow', sans-serif;
-    font-size: 20px;
     overflow-x: hidden;
 }
 
-/* GRUNGE BACKGROUND TEXTURE */
+/* HALFTONE LAYER */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/dots.png");
+    opacity: 0.07;
+    pointer-events: none;
+    z-index: 0;
+    animation: halftoneMove 18s linear infinite;
+}
+
+/* FILM GRAIN */
 body::after {
     content: "";
     position: fixed;
     width: 100%;
     height: 100%;
-    background: url("https://www.transparenttextures.com/patterns/dirty-wall.png"); 
-    opacity: 0.05;
+    background: url("https://www.transparenttextures.com/patterns/noise.png");
+    opacity: 0.12;
     pointer-events: none;
     z-index: 0;
-    animation: slightMove 8s infinite alternate;
+    animation: grainMove 0.5s steps(2) infinite;
 }
 
-@keyframes slightMove {
-    0% { transform: translate(0,0);}
-    50% { transform: translate(1px,1px);}
-    100% { transform: translate(-1px,-1px);}
+/* ANIMATIONS */
+@keyframes halftoneMove {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-12px, 8px); }
+    100% { transform: translate(0,0); }
+}
+
+@keyframes grainMove {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(-2px,2px); }
+    50% { transform: translate(2px,-2px); }
+    75% { transform: translate(-1px,-1px); }
+    100% { transform: translate(0,0); }
 }
 
 /* KEEP CONTENT ABOVE TEXTURE */
@@ -44,136 +66,85 @@ body::after {
     z-index: 1;
 }
 
-/* NAV / BAND NAME */
-nav {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    background: rgba(0,0,0,0.8);
-}
-
-nav h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 700;
-    font-size: 80px;
-    color: #ff2e2e;
-    letter-spacing: 3px;
-}
-
 /* HERO */
 .hero {
     text-align: center;
-    padding: 80px 20px;
+    padding: 100px 20px 60px;
 }
 
 .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 700;
-    font-size: 120px;
-    margin: 0;
+    font-family: 'Bebas Neue';
+    font-size: 140px;
     color: #ff2e2e;
+    margin: 0;
+    letter-spacing: 4px;
+    transform: rotate(-1deg);
 }
 
 .hero h2 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-weight: 100;
-    font-size: 36px;
-    margin: 10px 0 0 0;
-    color: #fff;
+    font-size: 32px;
+    margin-top: 10px;
+    transform: rotate(1deg);
 }
 
-/* GLITCH EFFECT FOR HEADERS ON HOVER */
-.glitch {
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 700;
-    font-size: 50px;
-    position: relative;
-    color: #ff2e2e;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-}
-
-.glitch:hover::before,
-.glitch:hover::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    overflow: hidden;
-}
-
-.glitch:hover::before {
-    left: 1px;
-    text-shadow: -1px 0 #ff7a00;
-    animation: glitchTop 1s infinite linear alternate-reverse;
-}
-
-.glitch:hover::after {
-    left: -1px;
-    text-shadow: -1px 0 #ff00ff;
-    animation: glitchBottom 1s infinite linear alternate-reverse;
-}
-
-@keyframes glitchTop {
-    0% { clip: rect(0, 9999px, 0, 0);}
-    20% { clip: rect(10px, 9999px, 50px, 0);}
-    40% { clip: rect(20px, 9999px, 40px, 0);}
-    60% { clip: rect(5px, 9999px, 45px, 0);}
-    80% { clip: rect(15px, 9999px, 25px, 0);}
-    100% { clip: rect(0, 9999px, 50px, 0);}
-}
-
-@keyframes glitchBottom {
-    0% { clip: rect(0, 9999px, 0, 0);}
-    20% { clip: rect(20px, 9999px, 60px, 0);}
-    40% { clip: rect(10px, 9999px, 50px, 0);}
-    60% { clip: rect(5px, 9999px, 40px, 0);}
-    80% { clip: rect(15px, 9999px, 45px, 0);}
-    100% { clip: rect(0, 9999px, 50px, 0);}
-}
-
-/* SECTION */
+/* SECTIONS */
 .section {
     max-width: 1000px;
-    margin: 30px auto;
+    margin: 25px auto;
     padding: 0 20px;
 }
 
-.section a {
-    color: #fff;
-    text-decoration: none;
+/* HEADERS */
+.glitch {
+    font-family: 'Bebas Neue';
+    font-size: 52px;
+    color: #ff2e2e;
+    transform: rotate(-1deg);
 }
 
-.section a:hover {
-    color: #ff7a00;
+/* GLITCH ON HOVER */
+.glitch:hover {
+    text-shadow: 
+        2px 0 #ff7a00,
+        -2px 0 #ff00ff;
 }
 
 /* SUBTEXT */
 .subtext {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat';
     font-weight: 100;
-    font-size: 32px;
+    font-size: 28px;
+}
+
+/* LINKS */
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff7a00;
 }
 
 /* SHOWS */
 .show {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
     border-bottom: 1px dashed #555;
-    font-family: 'Montserrat', sans-serif;
+    padding: 6px 0;
+    font-family: 'Montserrat';
     font-weight: 100;
-    font-size: 32px;
+    font-size: 28px;
 }
 
+/* BUTTON */
 .ticket-btn {
     border: 2px solid #ff2e2e;
-    padding: 6px 12px;
-    font-family: 'Montserrat', sans-serif;
+    padding: 4px 10px;
+    font-family: 'Montserrat';
     font-weight: 100;
-    text-decoration: none;
-    color: white;
 }
 
 .ticket-btn:hover {
@@ -183,77 +154,59 @@ nav h1 {
 /* RELEASES */
 .release {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
 .release img {
     width: 120px;
+    border: 2px solid #ff2e2e;
 }
 
-.release .subtext a {
-    color: #fff;
-}
-
-.release .subtext a:hover {
-    color: #ff7a00;
-}
-
-/* MERCH GRID */
-.merch-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.merch-grid img {
-    width: 100%;
-}
-
-/* BAND PHOTOS */
+/* PHOTO GRID */
 .photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 10px;
 }
 
 .photo-grid img {
     width: 100%;
-    display: block;
-    border: 2px solid #ff2e2e;
+    border: 2px solid #fff;
+    transform: rotate(-1deg);
+    transition: 0.2s;
 }
 
-/* VIDEO GALLERY */
+.photo-grid img:hover {
+    transform: rotate(1deg) scale(1.02);
+}
+
+/* VIDEO GRID */
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 10px;
 }
 
 .video-grid iframe {
     width: 100%;
-    height: 200px;
-    border: 2px solid #ff2e2e;
+    height: 180px;
+    border: 2px solid #fff;
+    transform: rotate(1deg);
 }
 
-/* EMAIL FORM */
-input {
-    width: 100%;
-    padding: 15px;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
+/* EMAIL */
+input, button {
+    font-family: 'Montserrat';
     font-weight: 100;
+    padding: 12px;
+    font-size: 18px;
 }
 
 button {
-    padding: 15px 25px;
-    font-size: 20px;
-    margin-top: 10px;
     border: 2px solid #ff2e2e;
     background: black;
     color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 100;
 }
 
 button:hover {
@@ -262,108 +215,42 @@ button:hover {
 
 </style>
 </head>
+
 <body>
 
-<!-- HERO -->
 <div class="hero">
     <h1>SCHMOOZE</h1>
     <h2>Alternative Rock • Athens, GA</h2>
 </div>
 
-<!-- NEWEST RELEASES -->
 <div class="section">
-<h2 class="glitch" data-text="NEWEST RELEASES">NEWEST RELEASES</h2>
+<h2 class="glitch">NEWEST RELEASES</h2>
+
 <div class="release">
-<img src="https://i.scdn.co/image/ab67616d0000b2738eb0e866594d03223e91c092" alt="Too Late to Plead Insanity">
-<div class="subtext"><a href="https://open.spotify.com/track/3ZmvnLtxStzt8ULGNrIe4e?si=c84561a99b2e4a97" target="_blank">Too Late to Plead Insanity</a></div>
+<img src="https://i.scdn.co/image/ab67616d0000b2738eb0e866594d03223e91c092">
+<div class="subtext">
+<a href="https://open.spotify.com/track/3ZmvnLtxStzt8ULGNrIe4e?si=c84561a99b2e4a97" target="_blank">
+Too Late to Plead Insanity
+</a>
 </div>
+</div>
+
 <div class="release">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EDu4IUp8yJRi568H97aBDMr8iWuvc-V3PQ&s" alt="If You Say So EP">
-<div class="subtext"><a href="https://open.spotify.com/album/55zU8VYGwRWFdp4tklTr1P?si=t7wvJ0FkTWSMnaFSfpZcoA" target="_blank">If You Say So (EP)</a></div>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3EDu4IUp8yJRi568H97aBDMr8iWuvc-V3PQ&s">
+<div class="subtext">
+<a href="https://open.spotify.com/album/55zU8VYGwRWFdp4tklTr1P?si=t7wvJ0FkTWSMnaFSfpZcoA" target="_blank">
+If You Say So (EP)
+</a>
 </div>
 </div>
 
-<!-- ABOUT / BIO -->
-<div class="section" id="about">
-<h2 class="glitch" data-text="ABOUT US">ABOUT US</h2>
-<p class="subtext">Insert your biography text here. Talk about the band, your influences, history, etc.</p>
 </div>
 
-<!-- SHOWS -->
-<div class="section" id="shows">
-<h2 class="glitch" data-text="SHOWS">SHOWS</h2>
-<div class="show">4/3: Ciné (Athens, GA) <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">4/4: Smith’s Olde Bar (Atlanta, GA) <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">4/11: Athentic Brewing (Athens, GA) - Normaltown Music Fest <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">5/8: Ciné (Athens, GA) <a class="ticket-btn" href="#">Tickets</a></div>
-<div class="show">6/25: Flicker (Athens, GA) <a class="ticket-btn" href="#">Tickets</a></div>
-</div>
-
-<!-- STREAMING -->
-<div class="section" id="music">
-<h2 class="glitch" data-text="STREAMING">STREAMING</h2>
-<ul class="subtext">
-<li><a href="https://open.spotify.com/artist/6Qp7Fp9kXe5r0o1utKq7FX?si=Q1gT_jO2SCeB095EL-0iCA" target="_blank">Spotify</a></li>
-<li><a href="https://music.apple.com/us/artist/schmooze/1741641206" target="_blank">Apple Music</a></li>
-<li><a href="https://www.youtube.com/@SCHMOOZEBAND" target="_blank">YouTube</a></li>
-</ul>
-</div>
-
-<!-- SOCIALS -->
-<div class="section" id="socials">
-<h2 class="glitch" data-text="SOCIALS">SOCIALS</h2>
-<ul class="subtext">
-<li><a href="https://www.instagram.com/schmoozeband?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
-<li><a href="https://www.tiktok.com/@schmoozeband?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
-<li><a href="https://www.facebook.com/profile.php?id=61581580022146" target="_blank">Facebook</a></li>
-</ul>
-</div>
-
-<!-- EPK -->
-<div class="section" id="epk">
-<h2 class="glitch" data-text="EPK">EPK</h2>
-<p class="subtext"><a href="https://www.canva.com/design/DAG2dM6A6lA/1LBMis8E4oSb-ZmFU8f8hQ/edit?utm_content=DAG2dM6A6lA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">View Our EPK</a></p>
-</div>
-
-<!-- MERCH -->
-<div class="section" id="merch">
-<h2 class="glitch" data-text="MERCH">MERCH</h2>
-<div class="merch-grid">
-<img src="https://via.placeholder.com/300" alt="Merch Preview 1">
-<img src="https://via.placeholder.com/300" alt="Merch Preview 2">
-<img src="https://via.placeholder.com/300" alt="Merch Preview 3">
-</div>
-<a class="ticket-btn" href="https://gfy-athens-ga.myshopify.com/collections/schmooze" target="_blank">SHOP MERCH</a>
-</div>
-
-<!-- BAND PHOTOS -->
-<div class="section" id="photos">
-<h2 class="glitch" data-text="BAND PHOTOS">BAND PHOTOS</h2>
-<div class="photo-grid">
-<img src="https://via.placeholder.com/300x300" alt="Photo 1">
-<img src="https://via.placeholder.com/300x300" alt="Photo 2">
-<!-- Add more photos here -->
-</div>
-</div>
-
-<!-- VIDEO GALLERY -->
-<div class="section" id="videos">
-<h2 class="glitch" data-text="VIDEOS">VIDEOS</h2>
-<div class="video-grid">
-<iframe src="https://www.youtube.com/embed/yourvideoid" frameborder="0" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/yourvideoid2" frameborder="0" allowfullscreen></iframe>
-<!-- Add more videos here -->
-</div>
-</div>
-
-<!-- EMAIL -->
 <div class="section">
-<h2 class="glitch" data-text="JOIN EMAIL LIST">JOIN EMAIL LIST</h2>
-<form action="https://formspree.io/f/YOURCODE" method="POST">
-<input type="email" placeholder="your email" required>
-<button type="submit">JOIN</button>
-</form>
+<h2 class="glitch">ABOUT</h2>
+<p class="subtext">write your bio here</p>
 </div>
 
-</body>
-</html>
+<div class="section">
+<h2 class="glitch">SHOWS</h2>
+<div class="show">4/3 Ciné <a class="ticket
